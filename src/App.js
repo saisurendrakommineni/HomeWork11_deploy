@@ -7,7 +7,7 @@ function App() {
   const[updatemovie,setupdatemovie]=useState(null)
 
   useEffect(()=>{
-    fetch("http://localhost:5000/api/movies/all").then((res)=>res.json())
+    fetch("https://homework11-yx5r.onrender.com/api/movies/all").then((res)=>res.json())
     .then((data)=>setmovies(data))
     .catch((error)=>console.error("Error fetching movies:", error))
   },[])
@@ -16,7 +16,7 @@ function App() {
     console.log("Add movie");
 
     try{
-      const response =await fetch("http://localhost:5000/api/movies/add",{
+      const response =await fetch("https://homework11-yx5r.onrender.com/api/movies/add",{
         method:"POST",headers: { "Content-Type": "application/json" },body: JSON.stringify(newmovie),
       })
       const data = await response.json();
@@ -40,7 +40,7 @@ function App() {
   async function handleupdate(updatedmovie) {
     console.log("Updating movie:", updatedmovie);
     try {
-      const response = await fetch(`http://localhost:5000/api/movies/update/${updatedmovie._id}`, {
+      const response = await fetch(`https://homework11-yx5r.onrender.com/api/movies/update/${updatedmovie._id}`, {
           method: "PUT",headers: { "Content-Type": "application/json" },body: JSON.stringify(updatedmovie),
       });
 
@@ -70,7 +70,7 @@ async function handledelete(id)
     const confirmdelete = window.confirm("Are you sure you want to delete this movie?");
     if (confirmdelete) {
       try{
-        const response = await fetch(`http://localhost:5000/api/movies/delete/${id}`,{ method: "DELETE" })
+        const response = await fetch(`https://homework11-yx5r.onrender.com/api/movies/delete/${id}`,{ method: "DELETE" })
       if(response.ok)
       {
         setmovies(movies.filter(movie => movie._id !== id));
